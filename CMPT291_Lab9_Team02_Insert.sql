@@ -1,12 +1,13 @@
 /* ===========================================================================
-   CMPT 291 Lab 9 - SQL Create                          Team <02>
+   CMPT 291 Lab 9 - SQL Insert                          Team <02>
    Members: Mitchell Stolte, Sylvester Voon, Jake Hanson, John Roque
 
-   File: CMPT291_Lab9_Team02_Create.sql
-   Goal: Drop the tables at the beggining of file so that the code can be rerun, then create
-   empty tables for the database.
+   File: CMPT291_Lab9_Team02_Insert.sql
+   Goal: Populate the database tables with mock data.
 
 =============================================================================== */
+
+--test commit from SSMS - Jake
 
 IF DB_ID(N'MovieRental_Team02') IS NULL 
  THROW 51000, 'No Database Found! Run the create file first.', 1;
@@ -59,37 +60,38 @@ VALUES
 ('A0009', 'King Henry VIII'),
 ('A0010', 'Herlock Sholmes');
 -- Insert mock rentals
-INSERT  INTO dbo.rental (rental_id, date_added, expired, movie_id, URL)
+INSERT  INTO dbo.rental (rental_id, date_added, expired, movie_id, URL, customer_id)
 VALUES                 
-('R0001', '2026-08-01 10:30:00', 1, 'M0001', 'URL0001'),
-('R0002', '2026-08-12 12:45:00', 1, 'M0002', 'URL0002'),
-('R0003', '2026-08-25 14:00:00', 1, 'M0003', 'URL0003'),
-('R0004', '2026-09-01 08:00:00', 1, 'M0004', 'URL0004'),
-('R0005', '2026-09-01 09:00:00', 1, 'M0004', 'URL0005'),
-('R0006', '2026-09-02 16:30:05', 1, 'M0010', 'URL0006'),
-('R0007', '2026-09-02 17:00:00', 1, 'M0012', 'URL0007'),
-('R0008', '2026-09-05 18:00:00', 1, 'M0010', 'URL0008'),
-('R0009', '2026-09-15 00:00:00', 1, 'M0003', 'URL0009'),
-('R0010', '2026-09-25 01:00:20', 1, 'M0007', 'URL0010'),
-('R0011', '2026-10-01 07:20:00', 1, 'M0003', 'URL0011'),
-('R0012', '2026-10-12 15:00:00', 1, 'M0008', 'URL0012'),
-('R0013', '2026-10-25 14:00:00', 1, 'M0003', 'URL0013'),
-('R0014', '2026-11-04 14:00:00', 1, 'M0001', 'URL0014'),
-('R0015', '2026-11-06 14:00:00', 0, 'M0003', 'URL0015'),
-('R0016', '2026-11-06 14:00:00', 0, 'M0004', 'URL0016'),
-('R0017', '2026-11-06 14:00:00', 0, 'M0005', 'URL0017'),
-('R0018', '2026-11-06 14:00:00', 0, 'M0006', 'URL0018'),
-('R0019', '2026-11-06 14:00:00', 0, 'M0007', 'URL0019'),
-('R0020', '2026-11-06 14:00:00', 0, 'M0008', 'URL0020');
+('R0001', '2026-08-01 10:30:00', 1, 'M0001', 'URL0001','C0001'),
+('R0002', '2026-08-12 12:45:00', 1, 'M0002', 'URL0002','C0002'),
+('R0003', '2026-08-25 14:00:00', 1, 'M0003', 'URL0003','C0003'),
+('R0004', '2026-09-01 08:00:00', 1, 'M0004', 'URL0004','C0004'),
+('R0005', '2026-09-01 09:00:00', 1, 'M0004', 'URL0005','C0005'),
+('R0006', '2026-09-02 16:30:05', 1, 'M0010', 'URL0006','C0002'),
+('R0007', '2026-09-02 17:00:00', 1, 'M0012', 'URL0007','C0001'),
+('R0008', '2026-09-05 18:00:00', 1, 'M0010', 'URL0008','C0001'),
+('R0009', '2026-09-15 00:00:00', 1, 'M0003', 'URL0009','C0001'),
+('R0010', '2026-09-25 01:00:20', 1, 'M0007', 'URL0010','C0004'),
+('R0011', '2026-10-01 07:20:00', 1, 'M0003', 'URL0011','C0003'),
+('R0012', '2026-10-12 15:00:00', 1, 'M0008', 'URL0012','C0001'),
+('R0013', '2026-10-25 14:00:00', 1, 'M0003', 'URL0013','C0005'),
+('R0014', '2026-11-04 14:00:00', 1, 'M0001', 'URL0014','C0002'),
+('R0015', '2026-11-06 14:00:00', 0, 'M0003', 'URL0015','C0001'),
+('R0016', '2026-11-06 14:00:00', 0, 'M0004', 'URL0016','C0002'),
+('R0017', '2026-11-06 14:00:00', 0, 'M0005', 'URL0017','C0001'),
+('R0018', '2026-11-06 14:00:00', 0, 'M0006', 'URL0018','C0001'),
+('R0019', '2026-11-06 14:00:00', 0, 'M0007', 'URL0019','C0001'),
+('R0020', '2026-11-06 14:00:00', 0, 'M0008', 'URL0020','C0001');
 
 
 -- Start insering relations
+
 -- employee / customer relationship
-INSERT  INTO dbo.manage (employee_id, customer_id)
-VALUES                 
-('E0001', 'C0001'),
-('E0001', 'C0002'),
-('E0002', 'C0003');
+--INSERT  INTO dbo.manage (employee_id, customer_id)
+--VALUES                 
+--('E0001', 'C0001'),
+--('E0001', 'C0002'),
+--('E0002', 'C0003');
 
 -- actor / movie relationship
 INSERT  INTO dbo.acted_in (actor_id, movie_id)
@@ -128,13 +130,10 @@ VALUES
 ('M0001', 'Drama'),
 ('M0002', 'Action'),
 ('M0003', 'Drama'),
-('M0004', 'Foreign'),
 ('M0004', 'Drama'),
 ('M0006', 'Action'),
 ('M0008', 'Drama'),
 ('M0005', 'Action'),
-('M0005', 'Foreign'),
-('M0009', 'Foreign'),
 ('M0007', 'Foreign'),
 ('M0009', 'Comedy'),
 ('M0010', 'Comedy'),
@@ -142,14 +141,15 @@ VALUES
 ('M0012', 'Comedy');
 
 -- customer movie ratings
-INSERT  INTO dbo.movie_ratings (customer_id, movie_id, rating)
+INSERT INTO dbo.movie_ratings (rental_id, movie_id, customer_id, rating)
 VALUES                       
-('C0001', 'M0001', 9),
-('C0002', 'M0002', 8),
-('C0003', 'M0003', 10),
-('C0005', 'M0005', 10),
-('C0006', 'M0012', 5),
-('C0002', 'M0001', 2);
+('R0001', 'M0001', 'C0001', 1),
+('R0002', 'M0002', 'C0002', 2),
+('R0003', 'M0003', 'C0003', 3),
+('R0004', 'M0004', 'C0004', 10),
+('R0005', 'M0004', 'C0005', 8),
+('R0006', 'M0010', 'C0002', 7),
+('R0007', 'M0012', 'C0001', 8);
 
 INSERT INTO dbo.renting (customer_id, rental_id)
 VALUES
@@ -164,6 +164,12 @@ VALUES
 ('C0004', 'R0018'),
 ('C0004', 'R0019'),
 ('C0004', 'R0020');
+
+INSERT INTO dbo.processes (employee_id, rental_id)
+VALUES
+    ('E0001', 'R0001'),
+    ('E0002', 'R0002'),
+    ('E0003', 'R0003');
 
 INSERT INTO dbo.manage (employee_id, customer_id)
 VALUES
@@ -185,4 +191,10 @@ VALUES
 ('E0001', 'M0001'),
 ('E0001', 'M0002'),
 ('E0002', 'M0003');
+
+INSERT INTO dbo.picks (rental_id, movie_id)
+VALUES
+('R0001', 'M0001'),
+('R0002', 'M0001'),
+('R0003', 'M0002');
 GO
