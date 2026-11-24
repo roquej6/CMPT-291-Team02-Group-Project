@@ -39,17 +39,19 @@
             // lblMainMenu
             // 
             lblMainMenu.AutoSize = true;
-            lblMainMenu.Location = new Point(215, 28);
+            lblMainMenu.Location = new Point(233, 23);
+            lblMainMenu.Margin = new Padding(2, 0, 2, 0);
             lblMainMenu.Name = "lblMainMenu";
-            lblMainMenu.Size = new Size(208, 25);
+            lblMainMenu.Size = new Size(174, 20);
             lblMainMenu.TabIndex = 0;
             lblMainMenu.Text = "Movie Rental Main Menu";
             // 
             // btnCustomer
             // 
-            btnCustomer.Location = new Point(12, 86);
+            btnCustomer.Location = new Point(10, 69);
+            btnCustomer.Margin = new Padding(2, 2, 2, 2);
             btnCustomer.Name = "btnCustomer";
-            btnCustomer.Size = new Size(112, 34);
+            btnCustomer.Size = new Size(90, 27);
             btnCustomer.TabIndex = 1;
             btnCustomer.Text = "Customer";
             btnCustomer.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@
             // 
             // btnMovie
             // 
-            btnMovie.Location = new Point(12, 126);
+            btnMovie.Location = new Point(10, 101);
+            btnMovie.Margin = new Padding(2, 2, 2, 2);
             btnMovie.Name = "btnMovie";
-            btnMovie.Size = new Size(112, 34);
+            btnMovie.Size = new Size(90, 27);
             btnMovie.TabIndex = 2;
             btnMovie.Text = "Movie";
             btnMovie.UseVisualStyleBackColor = true;
@@ -67,9 +70,10 @@
             // 
             // btnMovieActor
             // 
-            btnMovieActor.Location = new Point(12, 166);
+            btnMovieActor.Location = new Point(10, 133);
+            btnMovieActor.Margin = new Padding(2, 2, 2, 2);
             btnMovieActor.Name = "btnMovieActor";
-            btnMovieActor.Size = new Size(112, 34);
+            btnMovieActor.Size = new Size(106, 27);
             btnMovieActor.TabIndex = 3;
             btnMovieActor.Text = "Movie-Actor";
             btnMovieActor.UseVisualStyleBackColor = true;
@@ -77,9 +81,10 @@
             // 
             // btnRental
             // 
-            btnRental.Location = new Point(12, 206);
+            btnRental.Location = new Point(10, 165);
+            btnRental.Margin = new Padding(2, 2, 2, 2);
             btnRental.Name = "btnRental";
-            btnRental.Size = new Size(112, 34);
+            btnRental.Size = new Size(90, 27);
             btnRental.TabIndex = 4;
             btnRental.Text = "Rental";
             btnRental.UseVisualStyleBackColor = true;
@@ -87,9 +92,10 @@
             // 
             // btnReports
             // 
-            btnReports.Location = new Point(12, 246);
+            btnReports.Location = new Point(10, 197);
+            btnReports.Margin = new Padding(2, 2, 2, 2);
             btnReports.Name = "btnReports";
-            btnReports.Size = new Size(112, 34);
+            btnReports.Size = new Size(90, 27);
             btnReports.TabIndex = 5;
             btnReports.Text = "Reports";
             btnReports.UseVisualStyleBackColor = true;
@@ -97,15 +103,16 @@
             // 
             // MainMenuForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(640, 360);
             Controls.Add(btnReports);
             Controls.Add(btnRental);
             Controls.Add(btnMovieActor);
             Controls.Add(btnMovie);
             Controls.Add(btnCustomer);
             Controls.Add(lblMainMenu);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "MainMenuForm";
             Text = "Movie Rental - Main Menu";
             ResumeLayout(false);

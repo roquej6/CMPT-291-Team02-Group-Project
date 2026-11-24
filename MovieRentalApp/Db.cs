@@ -6,7 +6,7 @@ static class Db
 {
     // Copy the server name from the SSMS "Connect to Server" box.
     public const string ConnString = 
-        @"Server=DESKTOP-QBF3VSN;Database=MovieRental_Team02"+
+        @"Server=localhost;Database=MovieRental_Team02;"+
         @"Trusted_Connection=True;TrustServerCertificate=True;";
 
     // SELECT: returns the rows as a DataTable (for grids and drop-downs).
