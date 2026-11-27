@@ -75,5 +75,10 @@ namespace MovieRentalApp
             LoadMovies();
 
         }
+
+        private void cboType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

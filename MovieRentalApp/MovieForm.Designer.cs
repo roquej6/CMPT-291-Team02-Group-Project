@@ -44,9 +44,10 @@
             // 
             // txtForm
             // 
-            txtForm.Location = new Point(422, 321);
+            txtForm.Location = new Point(528, 401);
+            txtForm.Margin = new Padding(4, 4, 4, 4);
             txtForm.Name = "txtForm";
-            txtForm.Size = new Size(206, 27);
+            txtForm.Size = new Size(256, 31);
             txtForm.TabIndex = 0;
             txtForm.Text = "MainMenuForm->MovieForm";
             txtForm.TextAlign = HorizontalAlignment.Center;
@@ -54,9 +55,10 @@
             // 
             // btnTest
             // 
-            btnTest.Location = new Point(12, 319);
+            btnTest.Location = new Point(15, 399);
+            btnTest.Margin = new Padding(4, 4, 4, 4);
             btnTest.Name = "btnTest";
-            btnTest.Size = new Size(123, 29);
+            btnTest.Size = new Size(154, 36);
             btnTest.TabIndex = 1;
             btnTest.Text = "Test Connection";
             btnTest.UseVisualStyleBackColor = true;
@@ -65,11 +67,12 @@
             // txtInfo
             // 
             txtInfo.BorderStyle = BorderStyle.None;
-            txtInfo.Location = new Point(151, 306);
+            txtInfo.Location = new Point(189, 382);
+            txtInfo.Margin = new Padding(4, 4, 4, 4);
             txtInfo.Multiline = true;
             txtInfo.Name = "txtInfo";
             txtInfo.ReadOnly = true;
-            txtInfo.Size = new Size(272, 42);
+            txtInfo.Size = new Size(340, 52);
             txtInfo.TabIndex = 2;
             txtInfo.Text = "12 rows. go to Db.cs and experiment with connection string otherwise";
             // 
@@ -77,31 +80,35 @@
             // 
             dgvMovies.AllowUserToAddRows = false;
             dgvMovies.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMovies.Location = new Point(12, 112);
+            dgvMovies.Location = new Point(15, 140);
+            dgvMovies.Margin = new Padding(4, 4, 4, 4);
             dgvMovies.MultiSelect = false;
             dgvMovies.Name = "dgvMovies";
             dgvMovies.ReadOnly = true;
             dgvMovies.RowHeadersWidth = 51;
             dgvMovies.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMovies.Size = new Size(616, 188);
+            dgvMovies.Size = new Size(770, 235);
             dgvMovies.TabIndex = 3;
             // 
             // cboType
             // 
             cboType.FormattingEnabled = true;
-            cboType.Location = new Point(110, 12);
+            cboType.Location = new Point(138, 15);
+            cboType.Margin = new Padding(4, 4, 4, 4);
             cboType.Name = "cboType";
-            cboType.Size = new Size(151, 28);
+            cboType.Size = new Size(188, 33);
             cboType.TabIndex = 4;
+            cboType.SelectedIndexChanged += cboType_SelectedIndexChanged;
             // 
             // textBox1
             // 
             textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(12, 12);
+            textBox1.Location = new Point(15, 15);
+            textBox1.Margin = new Padding(4, 4, 4, 4);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(92, 24);
+            textBox1.Size = new Size(115, 30);
             textBox1.TabIndex = 5;
             textBox1.Text = "Type (Genre)";
             textBox1.TextAlign = HorizontalAlignment.Center;
@@ -114,9 +121,10 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(215, 62);
+            btnSearch.Location = new Point(269, 78);
+            btnSearch.Margin = new Padding(4, 4, 4, 4);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(94, 29);
+            btnSearch.Size = new Size(118, 36);
             btnSearch.TabIndex = 7;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
@@ -125,27 +133,29 @@
             // textBox2
             // 
             textBox2.BorderStyle = BorderStyle.None;
-            textBox2.Location = new Point(267, 12);
+            textBox2.Location = new Point(334, 15);
+            textBox2.Margin = new Padding(4, 4, 4, 4);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
-            textBox2.Size = new Size(92, 24);
+            textBox2.Size = new Size(115, 30);
             textBox2.TabIndex = 8;
             textBox2.Text = "Title";
             textBox2.TextAlign = HorizontalAlignment.Center;
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(365, 12);
+            txtSearch.Location = new Point(456, 15);
+            txtSearch.Margin = new Padding(4, 4, 4, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(125, 27);
+            txtSearch.Size = new Size(155, 31);
             txtSearch.TabIndex = 9;
             // 
             // MovieForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 360);
+            ClientSize = new Size(800, 450);
             Controls.Add(txtSearch);
             Controls.Add(textBox2);
             Controls.Add(btnSearch);
