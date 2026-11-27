@@ -137,12 +137,6 @@ CREATE TABLE dbo.maintains_movie (
     CONSTRAINT PK_maintainsmovie PRIMARY KEY (employee_id, movie_id)
 );
 
-CREATE TABLE dbo.renting (
-    customer_id VARCHAR (5) NOT NULL CONSTRAINT FK_renting_customer FOREIGN KEY REFERENCES dbo.customer (customer_id),
-    rental_id VARCHAR (5) NOT NULL CONSTRAINT FK_renting_rental FOREIGN KEY REFERENCES dbo.rental (rental_id),
-    CONSTRAINT PK_renting PRIMARY KEY (customer_id, rental_id)
-);
-
 CREATE TABLE dbo.processes (
     employee_id VARCHAR (5) NOT NULL CONSTRAINT FK_processes_employee FOREIGN KEY REFERENCES dbo.employee (employee_id),
     rental_id VARCHAR (5) NOT NULL CONSTRAINT FK_processes_rental FOREIGN KEY REFERENCES dbo.rental (rental_id), 
