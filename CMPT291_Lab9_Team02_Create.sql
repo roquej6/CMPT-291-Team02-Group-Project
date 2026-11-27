@@ -18,19 +18,19 @@ USE MovieRental_Team02;
 
 GO
 
-DROP TABLE IF EXISTS dbo.picks;
+DROP TABLE IF EXISTS dbo.movie_genres; -- flush out an old table
+
+DROP TABLE IF EXISTS dbo.renting; -- flush out an old table
+
+DROP TABLE IF EXISTS dbo.picks; -- flush out an old table
 
 DROP TABLE IF EXISTS dbo.processes;
-
-DROP TABLE IF EXISTS dbo.renting;
 
 DROP TABLE IF EXISTS dbo.maintains_actor;
 
 DROP TABLE IF EXISTS dbo.maintains_movie;
 
 DROP TABLE IF EXISTS dbo.movie_ratings;
-
-DROP TABLE IF EXISTS dbo.movie_genres;
 
 DROP TABLE IF EXISTS dbo.actor_movie_rating;
 
@@ -71,15 +71,16 @@ CREATE TABLE dbo.customer (
 CREATE TABLE dbo.movie (
     movie_id VARCHAR (5) NOT NULL CONSTRAINT PK_movie PRIMARY KEY,
     title VARCHAR (50) NOT NULL,
-    available BIT NOT NULL
+    available BIT NOT NULL,
+    genre VARCHAR (15) NOT NULL CONSTRAINT CK_movie_genre CHECK (genre in ('Comedy','Drama','Action','Foreign'))
 );
 
 CREATE TABLE dbo.rental (
     rental_id VARCHAR (5) NOT NULL CONSTRAINT PK_rental PRIMARY KEY,
     date_added DATETIME NOT NULL,
     expired BIT NOT NULL,
-    movie_id VARCHAR (5) NOT NULL CONSTRAINT FK_rental_movie FOREIGN KEY REFERENCES dbo.movie (movie_id),
     URL VARCHAR(50) NOT NULL CONSTRAINT UQ_URL UNIQUE,
+    movie_id VARCHAR (5) NOT NULL CONSTRAINT FK_rental_movie FOREIGN KEY REFERENCES dbo.movie (movie_id),
     customer_id VARCHAR (5) NOT NULL CONSTRAINT FK_rental_customer FOREIGN KEY REFERENCES dbo.customer (customer_id),
 
     CONSTRAINT UQ_movieratings_ids UNIQUE (rental_id, customer_id, movie_id)
@@ -104,21 +105,23 @@ CREATE TABLE dbo.acted_in (
 
 CREATE TABLE dbo.actor_movie_rating (
     actor_id VARCHAR (5) NOT NULL CONSTRAINT FK_actormovierating_actor FOREIGN KEY REFERENCES dbo.actor (actor_id),
+    customer_id VARCHAR (5) NOT NULL CONSTRAINT FK_actormovierating_customer FOREIGN KEY REFERENCES dbo.customer (customer_id),
     movie_id VARCHAR (5) NOT NULL CONSTRAINT FK_actormovierating_movie FOREIGN KEY REFERENCES dbo.movie (movie_id),
-    rating INT NOT NULL CONSTRAINT PK_actormovierating PRIMARY KEY (actor_id, movie_id)
-);
+    rental_id VARCHAR (5) NOT NULL CONSTRAINT FK_actormovierating_rental FOREIGN KEY REFERENCES dbo.rental(rental_id),
+    
+    rating INT NOT NULL, 
+    CONSTRAINT PK_actormovierating PRIMARY KEY (customer_id, rental_id, movie_id),
 
-CREATE TABLE dbo.movie_genres (
-    movie_id VARCHAR (5) CONSTRAINT FK_moviegenres_movie FOREIGN KEY REFERENCES dbo.movie (movie_id),
-    genre VARCHAR (15) CONSTRAINT PK_moviegenres PRIMARY KEY (movie_id, genre)
+    CONSTRAINT FK_actormovierating_valid FOREIGN KEY (rental_id, customer_id, movie_id) REFERENCES dbo.rental (rental_id, customer_id, movie_id)
 );
 
 CREATE TABLE dbo.movie_ratings (
     customer_id VARCHAR (5) NOT NULL CONSTRAINT FK_movieratings_customer FOREIGN KEY REFERENCES dbo.customer (customer_id),
     movie_id VARCHAR (5) NOT NULL CONSTRAINT FK_movieratings_movie FOREIGN KEY REFERENCES dbo.movie (movie_id),  
-    rating INT NOT NULL CONSTRAINT PK_movieratings PRIMARY KEY (customer_id, movie_id),
-
     rental_id VARCHAR (5) NOT NULL CONSTRAINT FK_movieratings_rental FOREIGN KEY REFERENCES dbo.rental(rental_id),
+
+    rating INT NOT NULL, 
+    CONSTRAINT PK_movieratings PRIMARY KEY (customer_id, rental_id),
     CONSTRAINT FK_movieratings_valid FOREIGN KEY (rental_id, customer_id, movie_id) REFERENCES dbo.rental (rental_id, customer_id, movie_id)
 );
 
@@ -146,9 +149,4 @@ CREATE TABLE dbo.processes (
     CONSTRAINT PK_processes PRIMARY KEY (rental_id)
 );
 
-CREATE TABLE dbo.picks (
-    rental_id VARCHAR (5) NOT NULL CONSTRAINT FK_picks_rental FOREIGN KEY REFERENCES dbo.rental (rental_id),
-    movie_id VARCHAR (5) NOT NULL CONSTRAINT FK_picks_movie FOREIGN KEY REFERENCES dbo.movie(movie_id),
-    CONSTRAINT PK_picks PRIMARY KEY (rental_id, movie_id)
-);
 GO

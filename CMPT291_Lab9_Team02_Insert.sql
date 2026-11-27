@@ -7,8 +7,6 @@
 
 =============================================================================== */
 
---test commit from SSMS - Jake
-
 IF DB_ID(N'MovieRental_Team02') IS NULL 
  THROW 51000, 'No Database Found! Run the create file first.', 1;
 ELSE USE MovieRental_Team02;
@@ -32,20 +30,21 @@ VALUES
 ('C0006', 'Cheese Ratman', 'cheese@email.com', 75, 1);
 
 -- Insert mock movies
-INSERT  INTO dbo.movie (movie_id, title, available)
+INSERT  INTO dbo.movie (movie_id, title, available, genre)
 VALUES                
-('M0001', 'Inception', 1),
-('M0002', 'The Matrix', 1),
-('M0003', 'Interstellar', 0),
-('M0004', 'Steel Ball Run', 1),
-('M0005', 'Lone Trail', 1),
-('M0006', 'John Wick', 1),
-('M0007', 'The Garden of Sinners', 1),
-('M0008', 'A Study in Scarlet', 1),
-('M0009', 'Beginning of a New Era', 0),
-('M0010', 'Army of Darkness', 0), 
-('M0011', 'Home Alone', 1),
-('M0012', 'Cars 2', 0);
+('M0001', 'Inception', 1, 'Drama'),
+('M0002', 'The Matrix', 1, 'Action'),
+('M0003', 'Interstellar', 0, 'Drama'),
+('M0004', 'Steel Ball Run', 1, 'Drama'),
+('M0005', 'Lone Trail', 1, 'Action'),
+('M0006', 'John Wick', 1, 'Action'),
+('M0007', 'The Garden of Sinners', 1, 'Foreign'),
+('M0008', 'A Study in Scarlet', 1, 'Drama'),
+('M0009', 'Beginning of a New Era', 0, 'Comedy'),
+('M0010', 'Army of Darkness', 0, 'Comedy'), 
+('M0011', 'Home Alone', 1, 'Comedy'),
+('M0012', 'Cars 2', 0, 'Comedy');
+
 -- Insert mock actors
 INSERT  INTO dbo.actor (actor_id, name)
 VALUES                
@@ -59,6 +58,7 @@ VALUES
 ('A0008', 'Mystia Lorelei'),
 ('A0009', 'King Henry VIII'),
 ('A0010', 'Herlock Sholmes');
+
 -- Insert mock rentals
 INSERT  INTO dbo.rental (rental_id, date_added, expired, movie_id, URL, customer_id)
 VALUES                 
@@ -118,27 +118,12 @@ VALUES
 ('A0005', 'M0005');--20
 
 -- actor / movie ratings
-INSERT  INTO dbo.actor_movie_rating (actor_id, movie_id, rating)
+INSERT  INTO dbo.actor_movie_rating (rental_id, movie_id, customer_id, actor_id, rating)
 VALUES                             
-('A0001', 'M0001', 9),
-('A0002', 'M0002', 10),
-('A0003', 'M0003', 8);
-
--- movie generes
-INSERT  INTO dbo.movie_genres (movie_id, genre)
-VALUES                       
-('M0001', 'Drama'),
-('M0002', 'Action'),
-('M0003', 'Drama'),
-('M0004', 'Drama'),
-('M0006', 'Action'),
-('M0008', 'Drama'),
-('M0005', 'Action'),
-('M0007', 'Foreign'),
-('M0009', 'Comedy'),
-('M0010', 'Comedy'),
-('M0011', 'Comedy'),
-('M0012', 'Comedy');
+('R0001', 'M0001', 'C0001', 'A0001', 8),
+('R0002', 'M0002', 'C0002', 'A0002', 2),
+('R0003', 'M0003', 'C0003', 'A0003', 6),
+('R0004', 'M0004', 'C0004', 'A0004', 4);
 
 -- customer movie ratings
 INSERT INTO dbo.movie_ratings (rental_id, movie_id, customer_id, rating)
@@ -150,20 +135,6 @@ VALUES
 ('R0005', 'M0004', 'C0005', 8),
 ('R0006', 'M0010', 'C0002', 7),
 ('R0007', 'M0012', 'C0001', 8);
-
-INSERT INTO dbo.renting (customer_id, rental_id)
-VALUES
-('C0001', 'R0001'),
-('C0002', 'R0002'),
-('C0003', 'R0003'),
-('C0005', 'R0005'),
-('C0005', 'R0012'),
-('C0002', 'R0001'),
-('C0004', 'R0016'),
-('C0004', 'R0017'),
-('C0004', 'R0018'),
-('C0004', 'R0019'),
-('C0004', 'R0020');
 
 INSERT INTO dbo.processes (employee_id, rental_id)
 VALUES
@@ -192,9 +163,4 @@ VALUES
 ('E0001', 'M0002'),
 ('E0002', 'M0003');
 
-INSERT INTO dbo.picks (rental_id, movie_id)
-VALUES
-('R0001', 'M0001'),
-('R0002', 'M0001'),
-('R0003', 'M0002');
 GO
